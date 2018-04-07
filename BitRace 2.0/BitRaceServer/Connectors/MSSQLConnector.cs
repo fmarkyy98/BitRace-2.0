@@ -12,8 +12,8 @@ namespace BitRaceServer
 {
     static class MSSQLConnector
     {
-        static string connectionString = "Data Source=ServerName;Initial Catalog=DatabaseName;User ID=UserName;Password=Password";
-        static SqlConnection sqlConnection = new SqlConnection(connectionString);
+        static string connectionString;
+        static SqlConnection sqlConnection;
 
         static string ConnectionString
         {
@@ -70,14 +70,14 @@ namespace BitRaceServer
             return result;
         }
 
-        public static Dictionary<char, string> QueryAnswers(int questinId)
+        public static Dictionary<char, string> QueryAnswers(int questionId)
         {
             Dictionary<char, string> result = new Dictionary<char, string>();
             string sql = "SELECT Character_key, IsCorrectAnswer, [Text] FROM Answers WHERE Question_Id = @questionID";
 
             using (SqlCommand comm = new SqlCommand(sql, sqlConnection))
             {
-                comm.Parameters.AddWithValue("@questionID", questinId);
+                comm.Parameters.AddWithValue("@questionID", questionId);
 
                 using (SqlDataReader reader = comm.ExecuteReader())
                 {

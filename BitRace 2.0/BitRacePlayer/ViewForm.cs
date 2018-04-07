@@ -25,7 +25,7 @@ namespace BitRacePlayer
             InitializeComponent();
             changeConnectionState(MSSQL, disconnected);
             changeConnectionState(TCPIP, disconnected);
-            submit_button.Enabled = false;
+            submitName_button.Enabled = false;
             send_button.Enabled = false;
         }
 
@@ -37,7 +37,7 @@ namespace BitRacePlayer
             switch (connectionType)
             {
                 case MSSQL:
-                    selectedLabel = SQL_StatusLabel;
+                    selectedLabel = sql_statusLabel;
                     break;
                 case TCPIP:
                     selectedLabel = TCP_StatusLabel;
@@ -50,7 +50,7 @@ namespace BitRacePlayer
                     if (connectionType == TCPIP)
                     {
                         connect_button.Enabled = true;
-                        timer1.Stop();
+                        viewForm_timer.Stop();
                     }
                     break;
                 case building:
@@ -62,7 +62,7 @@ namespace BitRacePlayer
                     if (connectionType == TCPIP)
                     {
                         connect_button.Enabled = false;
-                        timer1.Start();
+                        viewForm_timer.Start();
                     }
                     break;
             }
@@ -81,7 +81,9 @@ namespace BitRacePlayer
             try
             {
                 if (connection.IsBound && !connection.Connected)
+                {
                     connection = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
+                }
                 changeConnectionState(TCPIP, building);
                 connection.Connect(ipEndPoint);
             }
@@ -92,7 +94,7 @@ namespace BitRacePlayer
             }
             changeConnectionState(TCPIP, connected);
             connection.Send(Encoding.ASCII.GetBytes("mssql"));
-            submit_button.Enabled = true;
+            submitName_button.Enabled = true;
             if (name != null)
             {
                 string message = $"register;{name}";
@@ -116,7 +118,7 @@ namespace BitRacePlayer
                 return;
             }
             name = name_textBox.Text;            
-            submit_button.Enabled = false;
+            submitName_button.Enabled = false;
             name_textBox.ReadOnly = true;
 
             string message = $"register;{name}";
@@ -133,7 +135,7 @@ namespace BitRacePlayer
 
         private void send_button_Click(object sender, EventArgs e)
         {
-            error_StatusLabel.Text = "";
+            error_statusLabel.Text = "";
             DialogResult dr = MessageBox.Show("Are you sure about your choice?", "Confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (dr != DialogResult.Yes)
             {
@@ -141,25 +143,25 @@ namespace BitRacePlayer
             }
 
             string message = $"answer;{name};";
-            if (radioButtonA.Checked)
+            if (a_radioButton.Checked)
             {
                 message += "a";
             }
-            else if (radioButtonB.Checked)
+            else if (b_radioButton.Checked)
             {
                 message += "b";
             }
-            else if (radioButtonC.Checked)
+            else if (c_radioButton.Checked)
             {
                 message += "c";
             }
-            else if (radioButtonD.Checked)
+            else if (d_radioButton.Checked)
             {
                 message += "d";
             }
             else
             {
-                error_StatusLabel.Text = "No answer choosen.";
+                error_statusLabel.Text = "No answer choosen.";
                 return;
             }
 
@@ -174,7 +176,7 @@ namespace BitRacePlayer
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void viewForm_timer_Tick(object sender, EventArgs e)
         {
             if (!connection.Poll(0, SelectMode.SelectRead))
             {
@@ -196,11 +198,11 @@ namespace BitRacePlayer
                 else if (splitedInput[0] == "question")
                 {
                     if (!send_button.Enabled) { send_button.Enabled = true; }
-                    textBoxQuestion.Text = splitedInput[1];
-                    radioButtonA.Text = splitedInput[2];
-                    radioButtonB.Text = splitedInput[3];
-                    radioButtonC.Text = splitedInput[4];
-                    radioButtonD.Text = splitedInput[5];
+                    question_textBox.Text = splitedInput[1];
+                    a_radioButton.Text = splitedInput[2];
+                    b_radioButton.Text = splitedInput[3];
+                    c_radioButton.Text = splitedInput[4];
+                    d_radioButton.Text = splitedInput[5];
                 }
             }
             catch (SocketException)

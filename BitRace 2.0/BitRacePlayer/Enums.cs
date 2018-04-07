@@ -31,11 +31,11 @@ namespace BitRacePlayer
             }
             if (s == "building")
             {
-                return building
+                return building;
             }
             if (s=="connected")
             {
-                return connected
+                return connected;
             }
             throw new InvalidCastException();
         }

@@ -35,6 +35,8 @@
             this.spacing_toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.TCP_StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.error_StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.submit_button = new System.Windows.Forms.Button();
@@ -59,8 +61,6 @@
             this.radioButtonD = new System.Windows.Forms.RadioButton();
             this.send_button = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.error_StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -118,6 +118,18 @@
             this.TCP_StatusLabel.Size = new System.Drawing.Size(79, 17);
             this.TCP_StatusLabel.Text = "Disconnected";
             // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(49, 17);
+            this.toolStripStatusLabel3.Text = "              ";
+            // 
+            // error_StatusLabel
+            // 
+            this.error_StatusLabel.ForeColor = System.Drawing.Color.Red;
+            this.error_StatusLabel.Name = "error_StatusLabel";
+            this.error_StatusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -143,7 +155,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(576, 314);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Connection & Name";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // submit_button
@@ -215,7 +227,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(576, 314);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Questionnaire";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
@@ -390,18 +402,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(49, 17);
-            this.toolStripStatusLabel3.Text = "              ";
-            // 
-            // error_StatusLabel
-            // 
-            this.error_StatusLabel.ForeColor = System.Drawing.Color.Red;
-            this.error_StatusLabel.Name = "error_StatusLabel";
-            this.error_StatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // ViewForm
             // 

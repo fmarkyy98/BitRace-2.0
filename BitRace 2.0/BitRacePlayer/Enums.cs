@@ -25,12 +25,32 @@ namespace BitRacePlayer
 
         public static ConnectionState ToConnectionState(string s)
         {
-            return s == "disconnected" ? disconnected : s == "building" ? building : connected;
+            if (s == "disconnected")
+            {
+                return disconnected;
+            }
+            if (s == "building")
+            {
+                return building
+            }
+            if (s=="connected")
+            {
+                return connected
+            }
+            throw new InvalidCastException();
         }
 
         public static ConnectionType ToConnectionType(string s)
         {
-            return s == "mssql" ? MSSQL : TCPIP;
+            if (s == "mssql")
+            {
+                return MSSQL;
+            }
+            if (s == "tcpip")
+            {
+                return TCPIP;
+            }
+            throw new InvalidCastException();
         }
     }
 }

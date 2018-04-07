@@ -1,0 +1,18 @@
+TABLE Questions 
+	id INT PRIMARY KEY a_i
+	difficulty VARCHAR(255)
+	text VARCHAR(255);
+
+TABLE Ansvers
+	id INT PRIMARY KEY a_i
+	question_id INT  FOREIGN KEY question.id
+	caracter_key
+	text VARCHAR(255)
+	is_correct_ansver BOOLEAN
+
+TABLE Players
+	id INT PRIMARY KEY
+	name VARCHAR(255)
+	score INT
+
+Babucs.Hajnalka@njszg.hu

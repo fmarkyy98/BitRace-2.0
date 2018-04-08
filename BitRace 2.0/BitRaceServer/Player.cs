@@ -13,7 +13,7 @@ namespace BitRaceServer
         int id;
         string name;
         int score;
-        List<int> correctlyAnsveredQuestionIds;//ebba amiket helyesen megválaszoltunk.
+        List<int> correctlyAnsveredQuestionIds = new List<int>();//ebba amiket helyesen megválaszoltunk.
         int indexOfActualMainQuestion = 0;
         int indexOfPrimaryExtensionQuestion = -1;
         int indexOfSecondaryExtensionQuestion = -1;

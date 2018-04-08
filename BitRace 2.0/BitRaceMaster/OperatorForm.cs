@@ -80,7 +80,7 @@ namespace BitRaceMaster
                 changeConnectionState(TCPIP, building);
                 socketListener.Connect(ipEndPoint);
             }
-            catch (SocketException ex)
+            catch (SocketException)
             {
                 changeConnectionState(TCPIP, disconnected);
                 return;

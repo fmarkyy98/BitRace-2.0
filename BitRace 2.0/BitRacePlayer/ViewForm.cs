@@ -26,6 +26,7 @@ namespace BitRacePlayer
             changeConnectionState(MSSQL, disconnected);
             changeConnectionState(TCPIP, disconnected);
             submit_button.Enabled = false;
+            send_button.Enabled = false;
         }
 
         private void changeConnectionState(ConnectionType connectionType, Enums.ConnectionState connectionState)
@@ -84,7 +85,7 @@ namespace BitRacePlayer
                 changeConnectionState(TCPIP, building);
                 connection.Connect(ipEndPoint);
             }
-            catch (SocketException ex)
+            catch (SocketException)
             {
                 changeConnectionState(TCPIP, disconnected);
                 return;
@@ -194,6 +195,7 @@ namespace BitRacePlayer
                 }
                 else if (splitedInput[0] == "question")
                 {
+                    if (!send_button.Enabled) { send_button.Enabled = true; }
                     textBoxQuestion.Text = splitedInput[1];
                     radioButtonA.Text = splitedInput[2];
                     radioButtonB.Text = splitedInput[3];
@@ -201,7 +203,7 @@ namespace BitRacePlayer
                     radioButtonD.Text = splitedInput[5];
                 }
             }
-            catch (SocketException ex)
+            catch (SocketException)
             {
                 connection.Shutdown(SocketShutdown.Both);
                 connection.Close();

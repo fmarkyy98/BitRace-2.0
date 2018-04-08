@@ -34,13 +34,11 @@ namespace BitRaceServer
             this.id = id;
             this.text = text;
             this.optionalAnswers = new Dictionary<char, string>(optionalAnswers);
-            this.keysOfSelectedIncorrectAnsver = new List<int>();
         }
 
         public Question()
         {
             this.optionalAnswers = new Dictionary<char, string>(optionalAnswers);
-            this.keysOfSelectedIncorrectAnsver = new List<int>();
         }
 
         internal string CaracterOfCorrectAnsver()

@@ -11,12 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitRaceMaster", "BitRaceMas
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B08F15DE-3FBD-4EE8-B5CB-7CFEFF73266B}"
 	ProjectSection(SolutionItems) = preProject
+		BitRacer.bak = BitRacer.bak
+		CREATETABLE.sql = CREATETABLE.sql
+		sp_InsertOrGetPlayer.sql = sp_InsertOrGetPlayer.sql
 		SQLDatabaseStructure.txt = SQLDatabaseStructure.txt
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessengerClient", "MessengerClient\MessengerClient.csproj", "{4602F144-A66F-4846-94FE-3ECA8FDC7D4A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessengerServer", "MessengerServer\MessengerServer.csproj", "{D839F8B3-6500-4558-879C-DC634E5D02AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,14 +35,6 @@ Global
 		{FB726A25-245A-456E-9852-0391D66E00C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB726A25-245A-456E-9852-0391D66E00C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB726A25-245A-456E-9852-0391D66E00C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4602F144-A66F-4846-94FE-3ECA8FDC7D4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4602F144-A66F-4846-94FE-3ECA8FDC7D4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4602F144-A66F-4846-94FE-3ECA8FDC7D4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4602F144-A66F-4846-94FE-3ECA8FDC7D4A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D839F8B3-6500-4558-879C-DC634E5D02AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D839F8B3-6500-4558-879C-DC634E5D02AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D839F8B3-6500-4558-879C-DC634E5D02AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D839F8B3-6500-4558-879C-DC634E5D02AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

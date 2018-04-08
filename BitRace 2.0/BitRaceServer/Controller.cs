@@ -42,13 +42,19 @@ namespace BitRaceServer
                     clients.Remove(s);
                 }
 
-                foreach (var client in clients)
+                //foreach (var client in clients)
+                List<int> boundedIndexes = new List<int>();
+                for (int i = 0; i < clients.Count; i++)
                 {
+                    if (boundedIndexes.Contains(i))
+                    {
+                        continue;
+                    }
                     byte[] buffer = new byte[1024];
-                    client.ReceiveTimeout = 1000;
+                    clients[i].ReceiveTimeout = 1000;
                     int recieveSize = 0;
-                    try { recieveSize = client.Receive(buffer); }
-                    catch (SocketException ex)
+                    try { recieveSize = clients[i].Receive(buffer); }
+                    catch (SocketException)
                     {
                         continue;
                     }
@@ -62,23 +68,21 @@ namespace BitRaceServer
 
                     if (splitedInput[0] == "mssql")
                     {
-                        client.Send(Encoding.ASCII.GetBytes("mssql;" + sqlState.ToString().ToLower()));
+                        clients[i].Send(Encoding.ASCII.GetBytes("mssql;" + sqlState.ToString().ToLower()));
                     }
                     else if (splitedInput[0] == "register")
                     {
                         int indexOfCurrent = game1.Players.Select(x => x.Name).ToList().IndexOf(splitedInput[0]);
                         if (indexOfCurrent == -1)
                         {
-                            game1.AddPlayer(splitedInput[1], client);
+                            game1.AddPlayer(splitedInput[1], clients[i]);
                         }
                         else
                         {
-                            game1.Players[indexOfCurrent].Conect(client);
+                            game1.Players[indexOfCurrent].Conect(clients[i]);
                         }
-                    }
-                    else if (splitedInput[0] == "answer")
-                    {
-
+                        clients[i].Send(Encoding.ASCII.GetBytes($"question;{Game1.Questions[0].Text};{String.Join(";", Game1.Questions[0].OptionalAnswers)}"));
+                        boundedIndexes.Add(i);
                     }
                 }
             }

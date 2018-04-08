@@ -20,7 +20,7 @@ namespace BitRaceServer
 
         static List<Socket> clientsGlobal = new List<Socket>();
 
-        static void threadFunction()
+        static void IncomingSocketManageing()
         {
             // connectedek ellenorzese, majd a hibasakat
             while (true)
@@ -108,7 +108,7 @@ namespace BitRaceServer
                 Controller.sqlState = disconnected;
             }
             Console.WriteLine("Started Listening at LocalHost:8912");
-            new Thread(threadFunction).Start();
+            new Thread(IncomingSocketManageing).Start();
             while (true)
             {
                 Socket incoming = connection.Accept();
@@ -119,10 +119,5 @@ namespace BitRaceServer
             }
         }
 
-        static void ChangeGameState(ConnectionState sqlState)
-        {
-            Controller.sqlState = sqlState;
-            // dodo event
-        }
     }
 }

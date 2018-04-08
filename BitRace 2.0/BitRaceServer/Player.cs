@@ -13,7 +13,7 @@ namespace BitRaceServer
         int id;
         string name;
         int score;
-        List<int> correctlyAnsveredQuestionIds = new List<int>();//ebba amiket helyesen megválaszoltunk.
+        List<int> correctlyAnsveredQuestionIds = new List<int>();
         int indexOfActualMainQuestion = 0;
         int indexOfPrimaryExtensionQuestion = -1;
         int indexOfSecondaryExtensionQuestion = -1;
@@ -79,7 +79,7 @@ namespace BitRaceServer
             }
         }
 
-        PlayerConnector PlayerConnector { get { return this.playerConnector; } set { this.playerConnector = this.playerConnector ?? value; } }
+        PlayerConnector PlayerConnector { get { return this.playerConnector; } }
 
         public Player(string name, int score = 0)
         {

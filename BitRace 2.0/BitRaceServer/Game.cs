@@ -43,7 +43,7 @@ namespace BitRaceServer
             
             this.questions = new List<MainQuestion>();
 
-            MSSQLConnector.BuildConnection(@"CNHEGYI\SQL2016", "BitRace");
+            MSSQLConnector.BuildConnection(@"BITRACE/SERVER", "BitRace");
             allUseableQuestions.Add("MainQuetion", MSSQLConnector.QueryQuestions(countOfMainQuetions, hard).ToList());
             allUseableQuestions.Add("PrimaryExtensionQuestion", MSSQLConnector.QueryQuestions(countOfPrimaryExtensionQuestions, normal).ToList());
             allUseableQuestions.Add("SecondaryExtensionQuestion", MSSQLConnector.QueryQuestions(countOfSecondaryExtensionQuestions, easy).ToList());

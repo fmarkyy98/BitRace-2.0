@@ -97,7 +97,7 @@ namespace BitRaceServer
             connection.Listen(0);
             try
             {
-                MSSQLConnector.BuildConnection(@"CNHEGYI\SQL2016", "BitRace");
+                MSSQLConnector.BuildConnection(@"BITRACE/SERVER", "BitRace");
                 Controller.sqlState = building;
                 Console.WriteLine("Connection was succesfully built.");
                 Controller.sqlState = connected;

@@ -54,19 +54,45 @@ namespace BitRaceServer
                         catch (IndexOutOfRangeException) { }
                         if (MSSQLConnector.IsCorrectAnswer(actualQuestion.Id, char.Parse(splitedInput[2])))
                         {
-                            if (Encestor.IndexOfPrimaryExtensionQuestion==-1)
+                            if (Encestor.IndexOfPrimaryExtensionQuestion == -1)
                             {
+                                //Encestor.AddCorrectlyAnsweredQuestionId(Game1.Questions[Encestor.IndexOfActualMainQuestion].Id);
+                                Encestor.AddCorrectlyAnsweredQuestionId(actualQuestion.Id);
                                 Encestor.IndexOfActualMainQuestion++;
                             }
-                            else if (Encestor.IndexOfSecondaryExtensionQuestion==-1)
+                            else if (Encestor.IndexOfSecondaryExtensionQuestion == -1)
                             {
-                                // todo
+                                //Encestor.AddCorrectlyAnsweredQuestionId(Game1.Questions[Encestor.IndexOfActualMainQuestion].ExtensionQuestions[Encestor.IndexOfPrimaryExtensionQuestion].Id);
+                                Encestor.IndexOfPrimaryExtensionQuestion = -1;
                             }
+                            else
+                            {
+                                //Encestor.AddCorrectlyAnsweredQuestionId(Game1.Questions[Encestor.IndexOfActualMainQuestion].ExtensionQuestions[Encestor.IndexOfPrimaryExtensionQuestion].ExtensionQuestions[Encestor.IndexOfSecondaryExtensionQuestion].Id);
+                                Encestor.IndexOfSecondaryExtensionQuestion = -1;
+                            }
+                            Encestor.AddCorrectlyAnsweredQuestionId(actualQuestion.Id);
                         }
                         else
                         {
-
+                            if (Encestor.IndexOfPrimaryExtensionQuestion == -1)
+                            {
+                                while (Encestor.CorrectlyAnsveredQuestionIds.Contains(Game1.Questions[Encestor.IndexOfActualMainQuestion].ExtensionQuestions[++Encestor.IndexOfPrimaryExtensionQuestion].Id)) ;
+                            }
+                            else if (Encestor.IndexOfSecondaryExtensionQuestion == -1)
+                            {
+                                while (Encestor.CorrectlyAnsveredQuestionIds.Contains(Game1.Questions[Encestor.IndexOfActualMainQuestion].ExtensionQuestions[Encestor.IndexOfPrimaryExtensionQuestion].ExtensionQuestions[++Encestor.IndexOfSecondaryExtensionQuestion].Id)) ;
+                            }
+                            //else
+                            //{
+                            //    //SKYP
+                            //}
                         }
+                        output = $"{Game1.Questions[Encestor.IndexOfActualMainQuestion].Text};{String.Join(";", Game1.Questions[Encestor.IndexOfActualMainQuestion].OptionalAnswers)}";
+                        try { output = $"{Game1.Questions[Encestor.IndexOfActualMainQuestion].ExtensionQuestions[Encestor.IndexOfPrimaryExtensionQuestion].Text};{String.Join(";", Game1.Questions[Encestor.IndexOfActualMainQuestion].ExtensionQuestions[Encestor.IndexOfPrimaryExtensionQuestion].OptionalAnswers)}"; }
+                        catch (IndexOutOfRangeException) { }
+                        try { output = $"{Game1.Questions[Encestor.IndexOfActualMainQuestion].ExtensionQuestions[Encestor.IndexOfPrimaryExtensionQuestion].ExtensionQuestions[Encestor.IndexOfSecondaryExtensionQuestion].Text};{String.Join(";", Game1.Questions[Encestor.IndexOfActualMainQuestion].ExtensionQuestions[Encestor.IndexOfPrimaryExtensionQuestion].ExtensionQuestions[Encestor.IndexOfSecondaryExtensionQuestion].OptionalAnswers)}"; }
+                        catch (IndexOutOfRangeException) { }
+                        SendData($"question;{output}");
                     }
                 }
                 catch { }

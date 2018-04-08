@@ -13,7 +13,7 @@ namespace BitRaceServer
         int id;
         string name;
         int score;
-        List<int> correctlyAnsveredQuestions;//ebba amiket helyesen megválaszoltunk.
+        List<int> correctlyAnsveredQuestionIds;//ebba amiket helyesen megválaszoltunk.
         int indexOfActualMainQuestion = 0;
         int indexOfPrimaryExtensionQuestion = -1;
         int indexOfSecondaryExtensionQuestion = -1;
@@ -22,6 +22,7 @@ namespace BitRaceServer
         public int Id { get { return this.id; } set { this.id = value; } }
         public string Name { get { return this.name; } set { this.name = value; } }
         public int Score { get { return this.score; } set { this.score = value > -1 ? value : 0; } }
+        public List<int> CorrectlyAnsveredQuestionIds { get { return new List<int>(correctlyAnsveredQuestionIds); } }
 
         public int IndexOfActualMainQuestion
         {
@@ -97,6 +98,10 @@ namespace BitRaceServer
         {
             playerConnector = playerConnector ?? new PlayerConnector(socket);
             playerConnector.GetEncestorByReference(this);
+        }
+        public void AddCorrectlyAnsweredQuestionId(int id)
+        {
+            this.correctlyAnsveredQuestionIds.Add(id);
         }
     }
 }

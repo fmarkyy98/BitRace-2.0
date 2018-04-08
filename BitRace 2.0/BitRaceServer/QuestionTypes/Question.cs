@@ -13,20 +13,21 @@ namespace BitRaceServer
         protected string text;
         protected Difficulty difficulty;
         protected Dictionary<char, string> optionalAnswers;
-        public Dictionary<char, string>  OptionalAnswers
+        public Dictionary<char, string> OptionalAnswers
         {
             get
             {
-                return optionalAnswers;
+                return new Dictionary<char, string>(this.optionalAnswers);
             }
             set
             {
-                optionalAnswers = value;
+                this.optionalAnswers = new Dictionary<char, string>(value);
             }
         }
-        protected List<int> keysOfSelectedIncorrectAnsver = new List<int>();
+        //protected List<int> keysOfSelectedIncorrectAnsver = new List<int>();
 
         public int Id { get { return id; } }
+        public string Text { get { return text; } }
 
         public Question(int id, string text, Dictionary<char, string> optionalAnswers)
         {
@@ -46,7 +47,7 @@ namespace BitRaceServer
         {
             foreach (KeyValuePair<char, string> answer in optionalAnswers)
             {
-               if( MSSQLConnector.IsCorrectAnswer(this.id, answer.Key))
+                if (MSSQLConnector.IsCorrectAnswer(this.id, answer.Key))
                 {
                     return answer.Value;
                 }

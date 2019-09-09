@@ -51,9 +51,9 @@ namespace BitRaceServer
                         this.input = input;
                         Question actualQuestion = Game1.Questions[encestor.IndexOfActualMainQuestion];
                         try { actualQuestion = Game1.Questions[encestor.IndexOfActualMainQuestion].ExtensionQuestions[encestor.IndexOfPrimaryExtensionQuestion]; }
-                        catch (IndexOutOfRangeException) { }
+                        catch (ArgumentOutOfRangeException) { }
                         try { actualQuestion = Game1.Questions[encestor.IndexOfActualMainQuestion].ExtensionQuestions[encestor.IndexOfPrimaryExtensionQuestion].ExtensionQuestions[encestor.IndexOfSecondaryExtensionQuestion]; }
-                        catch (IndexOutOfRangeException) { }
+                        catch (ArgumentOutOfRangeException) { }
                         try
                         {
                             if (MSSQLConnector.IsCorrectAnswer(actualQuestion.Id, char.Parse(splitedInput[2])))
@@ -99,9 +99,9 @@ namespace BitRaceServer
                         }
                         output = $"{Game1.Questions[encestor.IndexOfActualMainQuestion].Text};{String.Join(";", Game1.Questions[encestor.IndexOfActualMainQuestion].OptionalAnswers)}";
                         try { output = $"{Game1.Questions[encestor.IndexOfActualMainQuestion].ExtensionQuestions[encestor.IndexOfPrimaryExtensionQuestion].Text};{String.Join(";", Game1.Questions[encestor.IndexOfActualMainQuestion].ExtensionQuestions[encestor.IndexOfPrimaryExtensionQuestion].OptionalAnswers)}"; }
-                        catch (IndexOutOfRangeException) { }
+                        catch (ArgumentOutOfRangeException) { }
                         try { output = $"{Game1.Questions[encestor.IndexOfActualMainQuestion].ExtensionQuestions[encestor.IndexOfPrimaryExtensionQuestion].ExtensionQuestions[encestor.IndexOfSecondaryExtensionQuestion].Text};{String.Join(";", Game1.Questions[encestor.IndexOfActualMainQuestion].ExtensionQuestions[encestor.IndexOfPrimaryExtensionQuestion].ExtensionQuestions[encestor.IndexOfSecondaryExtensionQuestion].OptionalAnswers)}"; }
-                        catch (IndexOutOfRangeException) { }
+                        catch (ArgumentOutOfRangeException) { }
                         SendData($"question;{output}");
                     }
                 }
